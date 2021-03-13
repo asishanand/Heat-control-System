@@ -1,0 +1,51 @@
+[System]
+Name='scfinal'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='temperature'
+Range=[0 50]
+NumMFs=5
+MF1='t1':'trapmf',[0 0 16 16]
+MF2='t2':'trimf',[16 18 20]
+MF3='t3':'trimf',[20 22 24]
+MF4='t4':'trimf',[24 28 32]
+MF5='t5':'trapmf',[30 32 50 50]
+
+[Input2]
+Name='Cloud_Cover'
+Range=[0 100]
+NumMFs=3
+MF1='Sunny':'trapmf',[0 0 25 30]
+MF2='Partly_cloud':'trimf',[20 50 80]
+MF3='Cloudy':'trapmf',[80 80 100 100]
+
+[Output1]
+Name='fanspeed'
+Range=[0 5]
+NumMFs=5
+MF1='fs0':'trapmf',[0 0 1 1]
+MF2='fs1':'trapmf',[1 1 2 2]
+MF3='fs2':'trapmf',[2 2 3 3]
+MF4='fs3':'trapmf',[3 3 4 4]
+MF5='fs4':'trapmf',[4 4 5 5]
+
+[Rules]
+2 1, 3 (1) : 1
+2 3, 1 (1) : 1
+3 1, 4 (1) : 1
+3 2, 4 (1) : 1
+3 3, 2 (1) : 1
+4 3, 3 (1) : 1
+4 1, 4 (1) : 1
+5 0, 5 (1) : 1
+1 0, 1 (1) : 1
